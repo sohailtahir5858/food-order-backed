@@ -1,5 +1,5 @@
 import { Schema, Document, model } from "mongoose"
-import { encryptPassword, generateSalt } from "../utility";
+import { comparePassword, createToken, encryptPassword, generateSalt } from "../utility";
 
 interface VendorDoc extends Document {
     name: string;
@@ -15,6 +15,9 @@ interface VendorDoc extends Document {
     coverImages: [string];
     rating: number;
     // food: any;
+
+    comparePassword(candidatePassword: string): Promise<boolean>;
+    createToken(): Promise<string>;
 }
 
 
@@ -92,6 +95,14 @@ VendorSchema.pre("save", async function (next) {
     this.password = await encryptPassword(this.password, this.salt);
     next();
 });
+
+VendorSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
+    return await comparePassword(candidatePassword, this.password)
+}
+
+VendorSchema.methods.createToken = async function () {
+    return await createToken(this._id, this.name, this.email);
+}
 
 export const Vendor = model<VendorDoc>("vendors", VendorSchema);
 

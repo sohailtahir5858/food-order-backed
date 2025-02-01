@@ -1,4 +1,2 @@
-import { AdminRoutes } from './AdminRoutes';
-import { VendorRoutes } from './VendorRoutes';
-
-export { AdminRoutes, VendorRoutes };
+export * from './AdminRoutes';
+export * from './VendorRoutes';

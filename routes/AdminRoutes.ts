@@ -3,14 +3,8 @@ import { createVendor, getVendors, getVendor } from "../controllers";
 
 const route = express.Router();
 
-route.post("/vendor/create", createVendor)
-route.get("/vendor/fetch-all", getVendors)
-route.get("/vendor/fetch/:id", getVendor)
-
-route.get("/", (req: Request, res: Response, next: NextFunction) => {
-    console.log("admin hit")
-    res.status(200).send("success")
-})
-
+route.get("/vendor/:id", getVendor)
+route.get("/vendors", getVendors)
+route.post("/vendor", createVendor)
 
 export { route as AdminRoutes }

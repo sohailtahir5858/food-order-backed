@@ -33,25 +33,6 @@ export const getVendors = async (req: Request, res: Response, next: NextFunction
     res.status(200).json({ success: true, vendors })
 }
 
-// export const getVendor = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//         console.log("getVendor hit");
-//         const { id } = req.params
-//         if (!id) {
-//             return res.status(404).json({ "message": "Invalid key provided" })
-//         }
-//         const vendor = await Vendor.findById(id)
-//         if (!vendor) {
-//             return res.status(404).json({ message: "Vendor not found" });
-//         }
-
-//         res.status(200).json({ success: true, vendor })
-//     } catch (error) {
-//         console.log(error.message)
-//         res.status(400).json({ message: error.message })
-//     }
-// }
-
 export const getVendor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params
