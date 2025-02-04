@@ -1,3 +1,3 @@
 export * from './AdminRoutes';
 export * from './VendorRoutes';
-export * from "./FoodRoutes";
+export * from "./ShoppingRoutes";

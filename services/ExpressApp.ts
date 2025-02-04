@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import path from 'path'
 require('dotenv').config()
 
-import { AdminRoutes, VendorRoutes, FoodRoutes } from "../routes"
+import { AdminRoutes, VendorRoutes, ShoppingRoutes } from "../routes"
 
 // Creates folder if it doesn't exist
 const uploadDir = path.join(__dirname, 'images');
@@ -16,7 +16,7 @@ export default async (app: Application) => {
 
     app.use("/admin", AdminRoutes)
     app.use("/vendor", VendorRoutes)
-    app.use("/food", FoodRoutes);
+    app.use("/shopping", ShoppingRoutes);
 
     return app;
 }
