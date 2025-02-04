@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { CreateVendorInput } from '../dto';
 import { Vendor } from '../models';
 import { isValidObjectId } from 'mongoose';
-// import { isValidObjectId } from 'mongoose';
 
 export const createVendor = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -18,7 +17,8 @@ export const createVendor = async (req: Request, res: Response, next: NextFuncti
             phone,
             serviceAvailable: false,
             coverImages: [],
-            rating: 0
+            rating: 0,
+            foods: []
         })
         res.status(200).json(vendor)
     } catch (error) {

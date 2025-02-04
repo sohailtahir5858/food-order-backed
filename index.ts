@@ -1,26 +1,18 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-
+import expressApp from './services/ExpressApp'
+import connectToDatabase from './services/Database'
+import express from 'express';
 require('dotenv').config()
 
-import { AdminRoutes, VendorRoutes } from "./routes"
-import { connectToDatabase } from './config/database'
-const app = express()
 
 const PORT = process.env.PORT
-const MONGO_URI = process.env.MONGO_URI
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-
-app.use("/admin", AdminRoutes)
-app.use("/vendor", VendorRoutes)
-
 
 const start = async () => {
     try {
         console.clear();
-        await connectToDatabase(MONGO_URI);
+        const app = express()
+        await connectToDatabase();
+        await expressApp(app);
+
         app.listen(PORT, () => {
             console.log(`app running on ${PORT} port...`);
         })

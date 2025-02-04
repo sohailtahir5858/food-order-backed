@@ -1,5 +1,6 @@
-import { Schema, Document, model } from "mongoose"
+import mongoose, { Schema, Document, model } from "mongoose"
 import { comparePassword, createToken, encryptPassword, generateSalt } from "../utility";
+import { AuthPayload } from "../dto/auth.dto";
 
 interface VendorDoc extends Document {
     name: string;
@@ -12,9 +13,9 @@ interface VendorDoc extends Document {
     foodType: [string];
     salt: string;
     serviceAvailable: boolean;
-    coverImages: [string];
+    coverImages: string[];
     rating: number;
-    // food: any;
+    foods: any;
 
     comparePassword(candidatePassword: string): Promise<boolean>;
     createToken(): Promise<string>;
@@ -62,7 +63,7 @@ const VendorSchema = new Schema({
         type: [String],
         required: [true, "foodType is required"]
     },
-    coverImage: {
+    coverImages: {
         type: [String]
     },
     rating: {
@@ -71,7 +72,15 @@ const VendorSchema = new Schema({
     salt: {
         type: String,
         required: false
-    }
+    },
+    serviceAvailable: {
+        type: Boolean,
+        default: false
+    },
+    foods: [{
+        type: mongoose.Types.ObjectId,
+        ref: "food"
+    }]
 }, {
     toJSON: {
         transform(doc, ret) {
@@ -101,7 +110,7 @@ VendorSchema.methods.comparePassword = async function (candidatePassword: string
 }
 
 VendorSchema.methods.createToken = async function () {
-    return await createToken(this._id, this.name, this.email);
+    return await createToken({ _id: this._id, name: this.name, email: this.email, foodType: this.foodType } as AuthPayload);
 }
 
 export const Vendor = model<VendorDoc>("vendors", VendorSchema);
