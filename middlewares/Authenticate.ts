@@ -35,7 +35,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
         req.user = payload;
         next();
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }

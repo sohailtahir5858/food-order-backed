@@ -17,8 +17,8 @@ export const GetFoodAvailability = async (req: Request, res: Response, next: Nex
         console.log(pincode)
         res.status(200).json({ status: "success", result: vendor })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -39,8 +39,8 @@ export const GetTopRestaurants = async (req: Request, res: Response, next: NextF
         }
         res.status(200).json({ status: "success", result: vendor })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -67,8 +67,8 @@ export const GetFoodsIn30Min = async (req: Request, res: Response, next: NextFun
         foods.sort((a, b) => b.rating - a.rating)
         res.status(200).json({ status: "success", result: foods })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -95,8 +95,8 @@ export const SearchFoods = async (req: Request, res: Response, next: NextFunctio
         foods.sort((a, b) => b.rating - a.rating)
         res.status(200).json({ status: "success", result: foods })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -114,7 +114,7 @@ export const RestaurantById = async (req: Request, res: Response, next: NextFunc
 
         res.status(200).json({ status: "success", result: vendor })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }

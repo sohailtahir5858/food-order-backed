@@ -101,7 +101,7 @@ VendorSchema.pre("save", async function (next) {
         return next();
     }
     this.salt = await generateSalt();
-    this.password = await encryptPassword(this.password, this.salt);
+    this.password = await encryptPassword(this.password, this.salt ?? "");
     next();
 });
 

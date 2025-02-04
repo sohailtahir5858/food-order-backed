@@ -17,7 +17,7 @@ const start = async () => {
             console.log(`app running on ${PORT} port...`);
         })
     } catch (error) {
-        console.log(error.message);
+        console.log((error as Error).message);
     }
 }
 

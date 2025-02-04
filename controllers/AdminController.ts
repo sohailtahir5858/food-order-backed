@@ -22,8 +22,8 @@ export const createVendor = async (req: Request, res: Response, next: NextFuncti
         })
         res.status(200).json(vendor)
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -49,7 +49,7 @@ export const getVendor = async (req: Request, res: Response, next: NextFunction)
 
         res.status(200).json({ success: true, vendor })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }

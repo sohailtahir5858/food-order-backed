@@ -18,8 +18,8 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         const token = await vendor.createToken();
         res.status(200).json({ vendor, token })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -39,8 +39,8 @@ export const getVendorProfile = async (req: Request, res: Response, next: NextFu
 
         res.status(200).json({ vendor })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -66,8 +66,8 @@ export const updateVendorProfile = async (req: Request, res: Response, next: Nex
         vendor.save()
         res.status(200).json({ message: "vendor profile updated!", vendor });
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -94,8 +94,8 @@ export const updateVendorService = async (req: Request, res: Response, next: Nex
         vendor.save();
         res.status(200).json({ message: "vendor availability status updated!", vendor });
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -123,8 +123,8 @@ export const updateVendorCoverImages = async (req: Request, res: Response, next:
         await vendor.save();
         res.status(200).json({ message: "vendor availability status updated!", vendor });
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -155,8 +155,8 @@ export const createFood = async (req: Request, res: Response, next: NextFunction
         vendor.save();
         res.status(200).json({ message: "food has been added!", result: vendor })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
 
@@ -171,7 +171,7 @@ export const getFoods = async (req: Request, res: Response, next: NextFunction) 
         const food = await Food.find({ vendorId: vendor._id })
         res.status(200).json({ message: "success", foods: food })
     } catch (error) {
-        console.log(error.message)
-        res.status(400).json({ message: error.message })
+        console.log((error as Error).message)
+        res.status(400).json({ message: (error as Error).message })
     }
 }
