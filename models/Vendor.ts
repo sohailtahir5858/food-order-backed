@@ -110,7 +110,7 @@ VendorSchema.methods.comparePassword = async function (candidatePassword: string
 }
 
 VendorSchema.methods.createToken = async function () {
-    return await createToken({ _id: this._id, name: this.name, email: this.email, foodType: this.foodType } as AuthPayload);
+    return await createToken({ _id: this._id, name: this.name, email: this.email, foodType: this.foodType, type: "vendor" } as AuthPayload);
 }
 
 export const Vendor = model<VendorDoc>("vendors", VendorSchema);

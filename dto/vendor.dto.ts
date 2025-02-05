@@ -30,6 +30,7 @@ export interface VendorPayload {
     _id: string;
     name: string;
     email: string;
-    foodType: [string];
-    user: any;
+    type: string;
+    foodType: [string] | null;
+    user: any | null;
 }
